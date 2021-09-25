@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/apis/TeachStudentApi.dart';
 import 'package:untitled/models/TeachCourse.dart';
 import 'package:untitled/models/TeachStudent.dart';
+import 'package:untitled/pages/TeachStudentPage.dart';
 
 class TeachStudentHeader extends StatefulWidget {
   TeachCourse teachCourse;
@@ -51,7 +52,12 @@ class _TeachStudentHeader extends State<TeachStudentHeader> {
               ],
             ),
             onTap: () {
-              // go to TeachStudentPage
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          TeachStudentPage(teachCourse: teachCourse,getTeachStudents: getTeachStudents,))
+              );
             },
           ),
         )
