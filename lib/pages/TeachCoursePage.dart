@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/apis/ExportApi.dart';
 import 'package:untitled/companants/AssignmentHeader.dart';
 import 'package:untitled/companants/TeachCourseHeader.dart';
 import 'package:untitled/companants/TeachStudentHeader.dart';
@@ -35,7 +36,8 @@ class TeachCoursePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          // export function
+          final results = await ExportApi.getExportInfo(teachCourse.teachCourseId);
+          await ExportApi.createExcel(results, teachCourse);
         },
         child: Icon(
           Icons.file_download,

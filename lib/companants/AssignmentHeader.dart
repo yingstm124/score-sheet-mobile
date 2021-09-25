@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/apis/AssignmentApi.dart';
 import 'package:untitled/models/Counter.dart';
 import 'package:untitled/models/TeachCourse.dart';
+import 'package:untitled/pages/AssignmentPage.dart';
 
 class AssignmentHeader extends StatefulWidget {
   TeachCourse teachCourse;
@@ -54,7 +55,12 @@ class _AssignmentHeader extends State<AssignmentHeader> {
               ],
             ),
             onTap: () {
-              // go to assignment page
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          AssignmentPage(teachCourse: teachCourse, getTotalAssignment: getTotalAssignments,)
+                  ));
             },
           ),
         )

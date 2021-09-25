@@ -5,12 +5,13 @@ class TeachCourse {
   final int term;
   final int year;
 
-  TeachCourse(
-      {required this.teachCourseId,
-        required this.courseId,
-        required this.courseName,
-        required this.term,
-        required this.year});
+  TeachCourse({
+    required this.teachCourseId,
+    required this.courseId,
+    required this.courseName,
+    required this.term,
+    required this.year
+  });
 
   factory TeachCourse.fromJson(Map<String, dynamic> json) {
     return TeachCourse(
