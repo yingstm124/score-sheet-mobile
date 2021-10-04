@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:untitled/helpers/BaseApi.dart';
-import 'package:untitled/models/PredictResult.dart';
+import 'package:scoresheet/helpers/BaseApi.dart';
+import 'package:scoresheet/models/PredictResult.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class PredictionApi {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/apis/TeachStudentApi.dart';
-import 'package:untitled/companants/TeachCourseHeader.dart';
-import 'package:untitled/models/TeachCourse.dart';
-import 'package:untitled/models/TeachStudent.dart';
+import 'package:scoresheet/apis/TeachStudentApi.dart';
+import 'package:scoresheet/companants/TeachCourseHeader.dart';
+import 'package:scoresheet/models/TeachCourse.dart';
+import 'package:scoresheet/models/TeachStudent.dart';
 
 class TeachStudentsPreview extends StatefulWidget {
   Function getTeachStudents;

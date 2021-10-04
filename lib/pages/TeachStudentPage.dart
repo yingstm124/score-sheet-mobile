@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/apis/TeachStudentApi.dart';
-import 'package:untitled/companants/ImportCSVForm.dart';
-import 'package:untitled/companants/TeachCourseHeader.dart';
-import 'package:untitled/models/TeachCourse.dart';
-import 'package:untitled/models/TeachStudent.dart';
+import 'package:scoresheet/apis/TeachStudentApi.dart';
+import 'package:scoresheet/companants/ImportCSVForm.dart';
+import 'package:scoresheet/companants/TeachCourseHeader.dart';
+import 'package:scoresheet/models/TeachCourse.dart';
+import 'package:scoresheet/models/TeachStudent.dart';
 
 class TeachStudentPage extends StatefulWidget {
   TeachCourse teachCourse;
@@ -55,8 +55,9 @@ class _TeachStudentPage extends State<TeachStudentPage> {
                       onPressed: () async{
                         final _deleteSuccess = await TeachStudentApi.deleteTeachStudents(e.teachStudentId);
                         if(_deleteSuccess){
-                          getTeachStudents();
-                          _getTeachStudents();
+                          setState(() {
+                            _teachStudents.removeWhere((element) => element.teachStudentId == e.teachStudentId);
+                          });
                         }
                       },
                     )

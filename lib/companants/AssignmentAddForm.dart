@@ -1,26 +1,23 @@
 import 'package:flutter/services.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/apis/AssignmentApi.dart';
-import 'package:untitled/models/Assignment.dart';
-import 'package:untitled/models/TeachCourse.dart';
+import 'package:scoresheet/apis/AssignmentApi.dart';
+import 'package:scoresheet/models/Assignment.dart';
+import 'package:scoresheet/models/TeachCourse.dart';
 
 class AssignmentAddForm extends StatefulWidget {
   Function getAssignments;
-  Function getTotalAssignment;
   TeachCourse teachCourse;
   AssignmentAddForm({
     required this.teachCourse,
-    required this.getAssignments,
-    required this.getTotalAssignment });
+    required this.getAssignments});
   @override
-  _AssignmentAddForm createState() => _AssignmentAddForm(teachCourse: teachCourse, getAssignments: getAssignments, getTotalAssignment: getTotalAssignment);
+  _AssignmentAddForm createState() => _AssignmentAddForm(teachCourse: teachCourse, getAssignments: getAssignments);
 }
 
 class _AssignmentAddForm extends State<AssignmentAddForm> {
   Function getAssignments;
-  Function getTotalAssignment;
   TeachCourse teachCourse;
-  _AssignmentAddForm({ required this.teachCourse, required this.getAssignments, required this.getTotalAssignment });
+  _AssignmentAddForm({ required this.teachCourse, required this.getAssignments});
 
   final _formKey = GlobalKey<FormState>();
   final _assignmentName = TextEditingController();
@@ -82,7 +79,7 @@ class _AssignmentAddForm extends State<AssignmentAddForm> {
 
                           if(_addAssignmentSuccess){
                             getAssignments();
-                            getTotalAssignment();
+
                             Navigator.of(context).pop();
                           }
                         }

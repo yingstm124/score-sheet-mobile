@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/apis/TeachCourseApi.dart';
-import 'package:untitled/models/TeachCourse.dart';
-import 'package:untitled/pages/TeachCoursePage.dart';
+import 'package:scoresheet/apis/TeachCourseApi.dart';
+import 'package:scoresheet/models/TeachCourse.dart';
+import 'package:scoresheet/pages/TeachCoursePage.dart';
 
 class TeachCourses extends StatefulWidget {
   @override

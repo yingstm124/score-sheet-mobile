@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/apis/AssignmentApi.dart';
-import 'package:untitled/companants/AssignmentAddForm.dart';
-import 'package:untitled/companants/AssignmentEditForm.dart';
-import 'package:untitled/companants/TeachCourseHeader.dart';
-import 'package:untitled/models/Assignment.dart';
-import 'package:untitled/models/TeachCourse.dart';
+import 'package:scoresheet/apis/AssignmentApi.dart';
+import 'package:scoresheet/companants/AssignmentAddForm.dart';
+import 'package:scoresheet/companants/AssignmentEditForm.dart';
+import 'package:scoresheet/companants/TeachCourseHeader.dart';
+import 'package:scoresheet/models/Assignment.dart';
+import 'package:scoresheet/models/TeachCourse.dart';
 import 'StudentAssignmentPage.dart';
 
 class AssignmentPage extends StatefulWidget {
   TeachCourse teachCourse;
-  Function getTotalAssignment;
-  AssignmentPage({required this.teachCourse, required this.getTotalAssignment});
+  AssignmentPage({required this.teachCourse});
   @override
-  _AssignmentPage createState() => _AssignmentPage(teachCourse: teachCourse, getTotalAssignment: getTotalAssignment);
+  _AssignmentPage createState() => _AssignmentPage(teachCourse: teachCourse);
 }
 
 class _AssignmentPage extends State<AssignmentPage>{
   TeachCourse teachCourse;
-  Function getTotalAssignment;
-  _AssignmentPage({ required this.teachCourse, required this.getTotalAssignment});
+  _AssignmentPage({ required this.teachCourse});
   List<Assignment> _assignments = [];
 
   @override
@@ -90,9 +88,11 @@ class _AssignmentPage extends State<AssignmentPage>{
                                           onPressed: () async{
                                             final _delAssignmentSuccess = await AssignmentApi.deleteAssignment(e.assignmentId);
                                             if(_delAssignmentSuccess){
-                                              getAssignments();
-                                              getTotalAssignment();
+                                              setState(() {
+                                                _assignments.removeWhere((element) => element.assignmentId == e.assignmentId);
+                                              });
                                             }
+                                            Navigator.pop(context, 'Cancel');
                                           },
                                           child: Text('Confirm'))
                                     ],
@@ -128,7 +128,7 @@ class _AssignmentPage extends State<AssignmentPage>{
                   builder: (BuildContext context) {
                     return AlertDialog(
                         title: const Text('New Assignment'),
-                        content: AssignmentAddForm(teachCourse: teachCourse, getAssignments: getAssignments, getTotalAssignment: getTotalAssignment,)
+                        content: AssignmentAddForm(teachCourse: teachCourse, getAssignments: getAssignments)
                     );
                   }
               );

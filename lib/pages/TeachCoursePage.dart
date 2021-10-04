@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/apis/ExportApi.dart';
-import 'package:untitled/companants/AssignmentHeader.dart';
-import 'package:untitled/companants/TeachCourseHeader.dart';
-import 'package:untitled/companants/TeachStudentHeader.dart';
-import 'package:untitled/models/TeachCourse.dart';
+import 'package:scoresheet/apis/ExportApi.dart';
+import 'package:scoresheet/companants/AssignmentHeader.dart';
+import 'package:scoresheet/companants/TeachCourseHeader.dart';
+import 'package:scoresheet/companants/TeachStudentHeader.dart';
+import 'package:scoresheet/models/TeachCourse.dart';
 
 
 class TeachCoursePage extends StatelessWidget {

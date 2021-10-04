@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/models/TeachCourse.dart';
+import 'package:scoresheet/models/TeachCourse.dart';
 
 class TeachCourseHeader extends StatelessWidget {
   TeachCourse teachCourse;

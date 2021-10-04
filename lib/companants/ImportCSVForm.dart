@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:untitled/models/TeachCourse.dart';
-import 'package:untitled/models/TeachStudent.dart';
+import 'package:scoresheet/models/TeachCourse.dart';
+import 'package:scoresheet/models/TeachStudent.dart';
 import 'TeachStudentPreview.dart';
 
 class ImportCSVForm extends StatefulWidget{

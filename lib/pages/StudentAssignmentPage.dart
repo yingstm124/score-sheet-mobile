@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:untitled/apis/StudentAssignmentApi.dart';
-import 'package:untitled/companants/ExpandableFab.dart';
-import 'package:untitled/companants/PreviewImage.dart';
-import 'package:untitled/companants/TeachCourseHeader.dart';
-import 'package:untitled/helpers/BaseApi.dart';
-import 'package:untitled/models/Assignment.dart';
-import 'package:untitled/models/StudentAssignment.dart';
-import 'package:untitled/models/TeachCourse.dart';
+import 'package:scoresheet/apis/StudentAssignmentApi.dart';
+import 'package:scoresheet/companants/ExpandableFab.dart';
+import 'package:scoresheet/companants/PreviewImage.dart';
+import 'package:scoresheet/companants/TeachCourseHeader.dart';
+import 'package:scoresheet/helpers/BaseApi.dart';
+import 'package:scoresheet/models/Assignment.dart';
+import 'package:scoresheet/models/StudentAssignment.dart';
+import 'package:scoresheet/models/TeachCourse.dart';
 import 'package:camera/camera.dart';
 
 class StudentAssignmentPage extends StatefulWidget {

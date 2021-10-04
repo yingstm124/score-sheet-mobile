@@ -2,12 +2,12 @@ import 'dart:io';
 import 'dart:io' as Io;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:untitled/apis/PredictionApi.dart';
-import 'package:untitled/apis/StudentAssignmentApi.dart';
-import 'package:untitled/apis/StudentScoreApi.dart';
-import 'package:untitled/models/Assignment.dart';
-import 'package:untitled/models/PredictResult.dart';
-import 'package:untitled/models/TeachCourse.dart';
+import 'package:scoresheet/apis/PredictionApi.dart';
+import 'package:scoresheet/apis/StudentAssignmentApi.dart';
+import 'package:scoresheet/apis/StudentScoreApi.dart';
+import 'package:scoresheet/models/Assignment.dart';
+import 'package:scoresheet/models/PredictResult.dart';
+import 'package:scoresheet/models/TeachCourse.dart';
 
 
 class PreviewImage extends StatefulWidget{

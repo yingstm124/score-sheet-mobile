@@ -1,11 +1,11 @@
 
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:untitled/helpers/BaseApi.dart';
-import 'package:untitled/models/Assignment.dart';
+import 'package:scoresheet/helpers/BaseApi.dart';
+import 'package:scoresheet/models/Assignment.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:untitled/models/Counter.dart';
+import 'package:scoresheet/models/Counter.dart';
 
 class AssignmentApi {
   static final String _baseUrl = BaseApi.getBaseAPI();

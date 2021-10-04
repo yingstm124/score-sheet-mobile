@@ -1,8 +1,8 @@
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:untitled/helpers/BaseApi.dart';
-import 'package:untitled/models/AddStudent.dart';
-import 'package:untitled/models/Counter.dart';
-import 'package:untitled/models/TeachStudent.dart';
+import 'package:scoresheet/helpers/BaseApi.dart';
+import 'package:scoresheet/models/AddStudent.dart';
+import 'package:scoresheet/models/Counter.dart';
+import 'package:scoresheet/models/TeachStudent.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

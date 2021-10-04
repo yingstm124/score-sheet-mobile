@@ -1,13 +1,13 @@
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:untitled/helpers/BaseApi.dart';
-import 'package:untitled/models/ExportScoreInfo.dart';
+import 'package:scoresheet/helpers/BaseApi.dart';
+import 'package:scoresheet/models/ExportScoreInfo.dart';
 import 'dart:io';
 import 'dart:convert';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 import 'package:syncfusion_flutter_xlsio/xlsio.dart';
-import 'package:untitled/models/TeachCourse.dart';
+import 'package:scoresheet/models/TeachCourse.dart';
 
 class ExportApi {
   static final String _baseUrl = BaseApi.getBaseAPI();

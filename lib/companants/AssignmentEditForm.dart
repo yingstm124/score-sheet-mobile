@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/apis/AssignmentApi.dart';
-import 'package:untitled/models/Assignment.dart';
+import 'package:scoresheet/apis/AssignmentApi.dart';
+import 'package:scoresheet/models/Assignment.dart';
 
 class AssignmentEditForm extends StatefulWidget {
 

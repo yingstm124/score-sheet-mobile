@@ -1,9 +1,9 @@
 
 import 'package:flutter/material.dart';
-import 'package:untitled/apis/AssignmentApi.dart';
-import 'package:untitled/models/Counter.dart';
-import 'package:untitled/models/TeachCourse.dart';
-import 'package:untitled/pages/AssignmentPage.dart';
+import 'package:scoresheet/apis/AssignmentApi.dart';
+import 'package:scoresheet/models/Counter.dart';
+import 'package:scoresheet/models/TeachCourse.dart';
+import 'package:scoresheet/pages/AssignmentPage.dart';
 
 class AssignmentHeader extends StatefulWidget {
   TeachCourse teachCourse;
@@ -59,7 +59,7 @@ class _AssignmentHeader extends State<AssignmentHeader> {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          AssignmentPage(teachCourse: teachCourse, getTotalAssignment: getTotalAssignments,)
+                          AssignmentPage(teachCourse: teachCourse)
                   ));
             },
           ),
