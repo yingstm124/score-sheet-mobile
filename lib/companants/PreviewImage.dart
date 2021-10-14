@@ -190,7 +190,7 @@ class _PreviewImage extends State<PreviewImage> {
                               // predictImage();
                               if(_predictResult.teachStudentId != null){
                                 final _image = Io.File(image!.path);
-                                final _saveImageSuccess = await StudentAssignmentApi.saveImage(_predictResult.teachStudentId!, assignment.assignmentId, _image);
+                                final _saveImageSuccess = await StudentAssignmentApi.saveImage(_predictResult.studentId!, assignment.assignmentId, _image);
                                 print('save image success');
                                 if(_saveImageSuccess){
                                   final _saveScoreSuccess = await StudentScoreApi.saveScore(

@@ -79,7 +79,6 @@ class _TeachStudentPage extends State<TeachStudentPage> {
                   );
                 },
               );
-
             },
             child: Icon(Icons.file_download)
         )

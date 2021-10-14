@@ -27,8 +27,8 @@ class StudentAssignmentApi {
     }
   }
 
-  static Future<bool> saveImage(int _teachStudentId, int _assignmentId ,File _image) async {
-    String url = _baseUrl + '/saveImage?TeachStudentId=${_teachStudentId.toInt()}&AssignmentId=${_assignmentId.toInt()}';
+  static Future<bool> saveImage(int _studentId, int _assignmentId ,File _image) async {
+    String url = _baseUrl + '/saveImage?StudentId=${_studentId.toInt()}&AssignmentId=${_assignmentId.toInt()}';
     final headers = { "Content-Type": "multipart/form-data" };
     EasyLoading.show(status: 'loading..');
     final request = await http.MultipartRequest(
