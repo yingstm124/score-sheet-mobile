@@ -40,7 +40,7 @@ class TeachCoursePage extends StatelessWidget {
           await ExportApi.createExcel(results, teachCourse);
         },
         child: Icon(
-          Icons.file_download,
+          Icons.print,
         ),
         backgroundColor: Colors.green,
       ),

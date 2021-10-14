@@ -48,7 +48,7 @@ class StudentAssignmentApi {
       return true;
     }
     else{
-      EasyLoading.showError('Failed with Error');
+      EasyLoading.showError('Not Found Student');
       EasyLoading.dismiss();
       throw Exception("Failed !");
       return false;

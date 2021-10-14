@@ -7,12 +7,14 @@ import 'package:scoresheet/apis/StudentAssignmentApi.dart';
 import 'package:scoresheet/apis/StudentScoreApi.dart';
 import 'package:scoresheet/models/Assignment.dart';
 import 'package:scoresheet/models/PredictResult.dart';
+import 'package:scoresheet/models/StudentAssignment.dart';
 import 'package:scoresheet/models/TeachCourse.dart';
 
 
 class PreviewImage extends StatefulWidget{
 
   Function getStudentAssignment;
+  List<StudentAssignment> studentAssignments;
   Assignment assignment;
   TeachCourse teachCourse;
   XFile? image ;
@@ -21,6 +23,7 @@ class PreviewImage extends StatefulWidget{
     required this.getStudentAssignment,
     required this.assignment,
     required this.teachCourse,
+    required this.studentAssignments,
     this.image
   });
 
@@ -29,6 +32,7 @@ class PreviewImage extends StatefulWidget{
       getStudentAssignment: getStudentAssignment,
       assignment:assignment,
       teachCourse: teachCourse,
+      studentAssignments: studentAssignments,
       image: image
   );
 }
@@ -40,6 +44,7 @@ class _PreviewImage extends State<PreviewImage> {
   Assignment assignment;
   TeachCourse teachCourse;
   XFile? image ;
+  List<StudentAssignment> studentAssignments;
 
   PredictResult _predictResult = new PredictResult(studentId: null, scores: [], message: "");
 
@@ -47,7 +52,8 @@ class _PreviewImage extends State<PreviewImage> {
     required this.getStudentAssignment,
     this.image,
     required this.assignment,
-    required this.teachCourse
+    required this.teachCourse,
+    required this.studentAssignments,
   });
 
   void predictImage() async {
@@ -190,35 +196,88 @@ class _PreviewImage extends State<PreviewImage> {
                               // predictImage();
                               if(_predictResult.teachStudentId != null){
                                 final _image = Io.File(image!.path);
-                                final _saveImageSuccess = await StudentAssignmentApi.saveImage(_predictResult.studentId!, assignment.assignmentId, _image);
-                                print('save image success');
-                                if(_saveImageSuccess){
-                                  final _saveScoreSuccess = await StudentScoreApi.saveScore(
-                                      _predictResult.scores,
-                                      _predictResult.studentId.toString(),
-                                      assignment.assignmentId,
-                                      teachCourse.teachCourseId,
-                                      _predictResult.teachStudentId!
-                                  );
+                                // check student id already detect
+                                bool isAlready = false;
+                                studentAssignments.forEach((element) {
+                                  if(element.studentId == _predictResult.studentId && element.score != null && element.score != 0){
+                                    isAlready = true;
+                                  }
+                                });
+                                if(!isAlready){
+                                  final _saveImageSuccess = await StudentAssignmentApi.saveImage(_predictResult.studentId!, assignment.assignmentId, _image);
+                                  print('save image success');
+                                  if(_saveImageSuccess){
+                                    final _saveScoreSuccess = await StudentScoreApi.saveScore(
+                                        _predictResult.scores,
+                                        _predictResult.studentId.toString(),
+                                        assignment.assignmentId,
+                                        teachCourse.teachCourseId,
+                                        _predictResult.teachStudentId!
+                                    );
+                                    await showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) => AlertDialog(
+                                          title: Text('Save Score Success'),
+                                          content: Text('${_saveScoreSuccess.message}'),
+                                          actions: <Widget>[
+                                            TextButton(
+                                                onPressed: () => Navigator.pop(context, 'Ok'),
+                                                child: Text("OK")
+                                            ),
+                                          ],
+                                        ));
+                                    Navigator.of(context).pop();
+                                    await getStudentAssignment();
+                                  }
+                                  print('save score sucess !');
+                                }
+                                else {
+                                  // Alert Confirm กรณีข้อมูลเก่ามีคะแนนแล้ว
                                   await showDialog(
                                       context: context,
                                       builder: (BuildContext context) => AlertDialog(
                                         title: Text('Save Score Success'),
-                                        content: Text('${_saveScoreSuccess.message}'),
+                                        content: Text('${_predictResult.studentId} is already save score. Do you want to save score ?'),
                                         actions: <Widget>[
                                           TextButton(
-                                              onPressed: () => Navigator.pop(context, 'Ok'),
+                                              onPressed: () => Navigator.pop(context, 'Cancel'),
+                                              child: Text("Cancel")
+                                          ),
+                                          TextButton(
+                                              onPressed: () async{
+                                                final _saveImageSuccess = await StudentAssignmentApi.saveImage(_predictResult.studentId!, assignment.assignmentId, _image);
+                                                print('save image success');
+                                                if(_saveImageSuccess){
+                                                final _saveScoreSuccess = await StudentScoreApi.saveScore(
+                                                _predictResult.scores,
+                                                _predictResult.studentId.toString(),
+                                                assignment.assignmentId,
+                                                teachCourse.teachCourseId,
+                                                _predictResult.teachStudentId!
+                                                );
+                                                await showDialog(
+                                                context: context,
+                                                builder: (BuildContext context) => AlertDialog(
+                                                title: Text('Save Score Success'),
+                                                content: Text('${_saveScoreSuccess.message}'),
+                                                actions: <Widget>[
+                                                TextButton(
+                                                onPressed: () => Navigator.pop(context, 'Ok'),
+                                                child: Text("OK")
+                                                ),
+                                                ],
+                                                ));
+                                                Navigator.of(context).pop();
+                                                await getStudentAssignment();
+                                                }
+                                                print('save score sucess !');
+                                              },
                                               child: Text("OK")
                                           ),
                                         ],
                                       ));
-                                  Navigator.of(context).pop();
-                                  await getStudentAssignment();
                                 }
-                                print('save score sucess !');
                               }
-                              print('no save');
-
                             },
                             child: const Text('Save As'),
                           ),

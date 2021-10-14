@@ -41,8 +41,9 @@ class ExportApi {
     sheet.getRangeByName('B1').setText("ชื่อนักศึกษา");
 
     datas.forEach((element) {
-      if(!assignmentHeaders.contains(element.assignmentName)){
-        assignmentHeaders.add(element.assignmentName);
+      String header = '${element.assignmentName}(${element.fullScore})';
+      if(!assignmentHeaders.contains(header)){
+        assignmentHeaders.add('${element.assignmentName}(${element.fullScore})');
       }
     });
     int indx = 0;
@@ -51,7 +52,6 @@ class ExportApi {
       indx +=1;
     });
     sheet.getRangeByName('${alphas[indx+2]}1').setText("คะแนนที่ได้");
-    sheet.getRangeByName('${alphas[indx+3]}1').setText("คะแนนเต็ม");
 
     // map data
     Map<String, List<dynamic>> reports = Map();
@@ -63,7 +63,7 @@ class ExportApi {
         int sumScore = 0;
         assignmentHeaders.forEach((assignmentName) {
           datas.forEach((ele) {
-            if(ele.studentId == element.studentId && ele.assignmentName == assignmentName){
+            if(ele.studentId == element.studentId && ele.assignmentName == assignmentName.split('(')[0]){
               temp.add(ele.score == null ? 0 : ele.score);
               if(ele.score != null){
                 sumScore += ele.score!;
@@ -72,7 +72,6 @@ class ExportApi {
           });
         });
         temp.add(sumScore);
-        temp.add(element.fullScore);
         reports[element.studentId.toString()] = temp;
       }
     });

@@ -39,6 +39,10 @@ class StudentScoreApi {
       EasyLoading.dismiss();
       final dynamic result = jsonDecode(res.body);
       StudentScoreResponse response = StudentScoreResponse.fromJson(result);
+      if(response.message == "Not Found Student"){
+        EasyLoading.showError(response.message);
+        EasyLoading.dismiss();
+      }
       return response;
     }
     else {
